@@ -10,7 +10,12 @@ import { TransactionEntity } from './entities/transaction.entity';
 import { TransactionKafkaController } from './transaction.kafka-controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TransactionEntity]), InternalAccountModule, ConfigModule, KafkaModule],
+  imports: [
+    TypeOrmModule.forFeature([TransactionEntity]),
+    InternalAccountModule,
+    ConfigModule,
+    KafkaModule,
+  ],
   controllers: [TransactionColtroller, TransactionKafkaController],
   providers: [TransactionService, TransactionRepository],
 })

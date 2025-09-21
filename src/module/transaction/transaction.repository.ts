@@ -9,7 +9,9 @@ export class TransactionRepository {
     private readonly transactionRepository: Repository<TransactionEntity>,
   ) {}
 
-  async createTransaction<T extends DeepPartial<TransactionEntity>>(entity: T): Promise<TransactionEntity> {
+  async createTransaction<T extends DeepPartial<TransactionEntity>>(
+    entity: T,
+  ): Promise<TransactionEntity> {
     return this.transactionRepository.save(entity);
   }
 
@@ -18,15 +20,22 @@ export class TransactionRepository {
   }
 
   async findById(id: string): Promise<TransactionEntity> {
-    return this.transactionRepository.findOneBy({ id }) as Promise<TransactionEntity>;
+    return this.transactionRepository.findOneBy({
+      id,
+    }) as Promise<TransactionEntity>;
   }
 
-  async findByParams(params: FindTransactionParams): Promise<{ items: TransactionEntity[]; total: number }> {
+  async findByParams(
+    params: FindTransactionParams,
+  ): Promise<{ items: TransactionEntity[]; total: number }> {
     const [items, total] = await this.qb(params).getManyAndCount();
     return { items, total };
   }
 
-  qb(params: FindTransactionParams = {}, alias = 'transaction'): SelectQueryBuilder<TransactionEntity> {
+  qb(
+    params: FindTransactionParams = {},
+    alias = 'transaction',
+  ): SelectQueryBuilder<TransactionEntity> {
     const { userIds, ids, amounts, type, status, take, skip } = params;
     const query = this.transactionRepository.createQueryBuilder(alias);
 

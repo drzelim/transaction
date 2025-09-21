@@ -19,7 +19,9 @@ export class TransactionColtroller {
   }
 
   @Get()
-  async getTransactions(@Query() query: GetTransactionsFilterDto): Promise<{ items: TransactionDto[]; total: number }> {
+  async getTransactions(
+    @Query() query: GetTransactionsFilterDto,
+  ): Promise<{ items: TransactionDto[]; total: number }> {
     return this.transactionService.getTransactions(query);
   }
 }

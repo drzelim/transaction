@@ -16,14 +16,19 @@ async function bootstrap() {
 
   // настройка Swagger
   const configSwagger = new DocumentBuilder()
-  .setTitle(`${config.get('SERVICE_NAME')} microservice`)
-  .setDescription('API Documentation')
-  .addServer(`/${config.get('HTTP_HOST')}:${config.get('HTTP_PORT')}${config.get('HTTP_PREFIX')}`)
-  .build();
+    .setTitle(`${config.get('SERVICE_NAME')} microservice`)
+    .setDescription('API Documentation')
+    .addServer(
+      `/${config.get('HTTP_HOST')}:${config.get('HTTP_PORT')}${config.get('HTTP_PREFIX')}`,
+    )
+    .build();
 
   const document = SwaggerModule.createDocument(app as any, configSwagger);
-  SwaggerModule.setup(`${config.get('HTTP_PREFIX')}/docs`, app as any, document);
-
+  SwaggerModule.setup(
+    `${config.get('HTTP_PREFIX')}/docs`,
+    app as any,
+    document,
+  );
 
   // подписка на брокер сообщений
   await app.startAllMicroservices();

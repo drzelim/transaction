@@ -60,7 +60,9 @@ describe('TransactionService', () => {
       };
 
       // Моки для методов, которые вызываются в transactionService.create
-      jest.spyOn(transactionRepository, 'createTransaction').mockResolvedValue(createdTransaction);
+      jest
+        .spyOn(transactionRepository, 'createTransaction')
+        .mockResolvedValue(createdTransaction);
       jest.spyOn(kafkaService, 'produce').mockImplementation();
 
       await transactionService.create(createTransactionDto);

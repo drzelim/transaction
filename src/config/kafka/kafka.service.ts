@@ -7,7 +7,9 @@ import { KafkaEvent } from './kafka.interface';
 
 @Injectable()
 export class KafkaService {
-  constructor(@Inject(KAFKA_CLIENT) private readonly kafkaClient: ClientKafka) {}
+  constructor(
+    @Inject(KAFKA_CLIENT) private readonly kafkaClient: ClientKafka,
+  ) {}
 
   subscribeToResponseOf(pattern: string): void {
     return this.kafkaClient.subscribeToResponseOf(pattern);

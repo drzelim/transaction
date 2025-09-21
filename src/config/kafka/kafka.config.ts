@@ -9,7 +9,7 @@ export const kafkaOptionsFactory = (): KafkaOptions => {
   const options: KafkaOptions['options'] = {
     client: {
       clientId: process.env.KAFKA_CLIENT_ID,
-      brokers: process.env.KAFKA_CLIENT_BROKERS?.split(',')!,
+      brokers: process.env.KAFKA_CLIENT_BROKERS?.split(',') as string[],
     },
     consumer: {
       groupId: process.env.KAFKA_CONSUMER_GROUP_ID!,
