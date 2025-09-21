@@ -1,0 +1,27 @@
+### BASE
+SERVICE_NAME=account
+NODE_ENV=local
+
+### HTTP_HOST
+HTTP_HOST=localhost
+HTTP_PORT=9002
+HTTP_PREFIX=/api/transaction
+HTTP_VERSION=1
+
+### DATABASE
+DB_TYPE=postgres
+DB_HOST=localhost
+DB_PORT=5132
+DB_DATABASE=transaction-db
+DB_USERNAME=postgres
+DB_PASSWORD=password
+DB_LOGGING=false
+DB_ENTITIES=dist/**/*.entity{.ts,.js}
+DB_MIGRATIONS=dist/module/migrations/*.js
+DB_MIGRATIONS_RUN=true
+DB_MIGRATIONS_TABLE_NAME=database_migrations
+
+### KAFKA
+KAFKA_CLIENT_ID=transaction
+KAFKA_CONSUMER_GROUP_ID=transaction-consumer
+KAFKA_CLIENT_BROKERS=localhost:29092
